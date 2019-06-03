@@ -11,6 +11,7 @@ module Sneakers
       :type               => :direct,
       :durable            => true,
       :auto_delete        => false,
+      :passive            => true,
       :arguments => {} # Passed as :arguments to Bunny::Channel#exchange
     }.freeze
 
@@ -107,6 +108,7 @@ module Sneakers
       hash = map_deprecated_options_key(:exchange_options, :exchange_arguments, :arguments, true, hash)
       hash = map_deprecated_options_key(:exchange_options, :durable, :durable, false, hash)
       hash = map_deprecated_options_key(:queue_options, :durable, :durable, true, hash)
+      hash = map_deprecated_options_key(:queue_options, :passive, :passive, true, hash)
       hash = map_deprecated_options_key(:queue_options, :arguments, :arguments, true, hash)
       hash
     end
